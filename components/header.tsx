@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { Menu, X, Code } from "lucide-react"
 
 export function Header() {
@@ -38,14 +39,16 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg border-b" : "bg-transparent"
+        isScrolled ? "bg-background/95 backdrop-blur-md shadow-lg border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-2">
-            <Code className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-foreground">Developers Point</span>
+            <Code className="h-8 w-8 text-primary transition-colors duration-300" />
+            <span className="text-xl font-bold text-foreground font-poppins transition-colors duration-300">
+              Developers Point
+            </span>
           </div>
 
           {/* Desktop Navigation */}
@@ -55,7 +58,7 @@ export function Header() {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
                 >
                   {item.name}
                 </button>
@@ -63,7 +66,7 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
                 >
                   {item.name}
                 </Link>
@@ -71,26 +74,32 @@ export function Header() {
             )}
           </nav>
 
-          <div className="hidden md:flex">
-            <Button onClick={() => scrollToSection("#contact")}>Get a Quote</Button>
+          <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
+            <Button onClick={() => scrollToSection("#contact")} className="transition-all duration-300">
+              Get a Quote
+            </Button>
           </div>
 
           {/* Mobile menu button */}
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t bg-background/95 backdrop-blur-md">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-border bg-background/95 backdrop-blur-md transition-colors duration-300">
               {navItems.map((item) =>
                 item.href.startsWith("#") ? (
                   <button
                     key={item.name}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    className="block w-full text-left px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
                   >
                     {item.name}
                   </button>
@@ -98,7 +107,7 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="block px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
+                    className="block px-3 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
@@ -106,7 +115,7 @@ export function Header() {
                 ),
               )}
               <div className="px-3 py-2">
-                <Button onClick={() => scrollToSection("#contact")} className="w-full">
+                <Button onClick={() => scrollToSection("#contact")} className="w-full transition-all duration-300">
                   Get a Quote
                 </Button>
               </div>

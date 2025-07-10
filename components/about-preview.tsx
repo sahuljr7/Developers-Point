@@ -23,11 +23,13 @@ export function AboutPreview() {
   ]
 
   return (
-    <section id="about" className="py-16 md:py-24 bg-muted/30">
+    <section id="about" className="py-16 md:py-24 bg-muted/30 dark:bg-muted/20 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Who We Are</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-poppins transition-colors duration-300">
+            Who We Are
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed transition-colors duration-300">
             Developers Point brings together passionate freelancers with expertise across different domains like
             front-end development, CRM systems, and back-end technologies.
           </p>
@@ -35,25 +37,32 @@ export function AboutPreview() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {features.map((feature, index) => (
-            <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 group">
+            <Card
+              key={index}
+              className="text-center hover:shadow-lg dark:hover:shadow-2xl transition-all duration-300 group border-border"
+            >
               <CardContent className="pt-6">
-                <div className="p-3 bg-primary/10 rounded-full w-fit mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                  <feature.icon className="h-8 w-8 text-primary" />
+                <div className="p-3 bg-primary/10 dark:bg-primary/20 rounded-full w-fit mx-auto mb-4 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors duration-300">
+                  <feature.icon className="h-8 w-8 text-primary transition-colors duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm">{feature.description}</p>
+                <h3 className="text-lg font-semibold mb-2 font-poppins transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed transition-colors duration-300">
+                  {feature.description}
+                </p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="text-center bg-background rounded-lg p-8 md:p-12 shadow-sm">
-          <h3 className="text-2xl font-bold mb-4">Ready to Learn More?</h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+        <div className="text-center bg-background dark:bg-card rounded-lg p-8 md:p-12 shadow-sm border border-border transition-colors duration-300">
+          <h3 className="text-2xl font-bold mb-4 font-poppins transition-colors duration-300">Ready to Learn More?</h3>
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed transition-colors duration-300">
             We believe in quality, transparency, and affordability. Whether you're a startup or an established business,
             we tailor our services to fit your needs.
           </p>
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="font-medium transition-all duration-300 hover:scale-105">
             <Link href="/about">
               Read More About Us <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
